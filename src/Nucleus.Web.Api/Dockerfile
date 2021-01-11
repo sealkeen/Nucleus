@@ -1,25 +1,22 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
 WORKDIR /app
+EXPOSE 80
+EXPOSE 443
 
-
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
 COPY ["src/Nucleus.Web.Api/Nucleus.Web.Api.csproj", "src/Nucleus.Web.Api/"]
-COPY ["src/Nucleus.EntityFramework/Nucleus.EntityFramework.csproj", "src/Nucleus.EntityFramework/"]
-COPY ["src/Nucleus.Core/Nucleus.Core.csproj", "src/Nucleus.Core/"]
-COPY ["src/Nucleus.Application/Nucleus.Application.csproj", "src/Nucleus.Application/"]
-COPY ["src/Nucleus.Utilities/Nucleus.Utilities.csproj", "src/Nucleus.Utilities/"]
-COPY ["src/Nucleus.Web.Core/Nucleus.Web.Core.csproj", "src/Nucleus.Web.Core/"]
 RUN dotnet restore "src/Nucleus.Web.Api/Nucleus.Web.Api.csproj"
 COPY . .
-
 WORKDIR "/src/src/Nucleus.Web.Api"
-RUN dotnet build "Nucleus.Web.Api.csproj" -c Release -o /app
+RUN dotnet build "Nucleus.Web.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Nucleus.Web.Api.csproj" -c Release -o /app
+RUN dotnet publish "Nucleus.Web.Api.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app .
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Nucleus.Web.Api.dll"]
