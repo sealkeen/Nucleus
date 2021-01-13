@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using Serilog.Events;
 
 namespace Nucleus.Web.Api
 {
@@ -12,7 +13,13 @@ namespace Nucleus.Web.Api
         {
             try
             {
-                Log.Logger = new LoggerConfiguration().CreateLogger();
+                Log.Logger = new LoggerConfiguration()
+                    .WriteTo.Seq("http://localhost:5341")
+                    .MinimumLevel.Information()
+                    .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+                    .Enrich.WithProperty("AppName", "Nucleus.Web.Api")
+                    .Enrich.WithProperty("Environment", "development")
+                    .CreateLogger();
                 Log.Information("Starting web host");
                 CreateHostBuilder(args).Build().Run();
             }
