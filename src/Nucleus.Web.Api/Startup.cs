@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,7 +20,7 @@ namespace Nucleus.Web.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            RegisterControllers(services);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Nucleus.Web.Api", Version = "v1" });
@@ -42,5 +44,30 @@ namespace Nucleus.Web.Api
                 endpoints.MapControllers();
             });
         }
+
+        #region private methods
+
+        private static void RegisterControllers(IServiceCollection services)
+        {
+            var mvcBuilder = services.AddControllers();
+            LoadModules(mvcBuilder);
+        }
+
+        private static void LoadModules(IMvcBuilder mvcBuilder)
+        {
+            var moduleAssemblies = AppDomain.CurrentDomain.GetAssemblies()
+                .Where(a =>
+                {
+                    var name = a.GetName().Name;
+                    return name != null && name.Contains("Nucleus.Modules");
+                });
+
+            foreach (var moduleAssembly in moduleAssemblies)
+            {
+                mvcBuilder.AddApplicationPart(moduleAssembly);
+            }
+        }
+
+        #endregion
     }
 }
