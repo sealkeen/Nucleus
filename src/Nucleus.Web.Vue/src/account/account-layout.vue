@@ -1,7 +1,6 @@
 <template>
-    <div>
-        account
-    </div>
+    <div>{{pageText}}</div>
+    <router-view />
 </template>
 
 <script src="./account-layout.ts"></script>
