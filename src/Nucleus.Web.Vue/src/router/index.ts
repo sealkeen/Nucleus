@@ -1,12 +1,11 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "@/views/Home.vue";
 import About from "@/views/About.vue";
+import AdminLayout from '@/admin/admin-layout.vue';
 import AccountLayout from '@/account/account-layout.vue';
-import Login from '@/account/views/login/login';
 import AuthStore from '@/stores/auth-store';
 
 const routes: Array<RouteRecordRaw> = [
-  { path: "/", component: Home },
+  { path: "/", redirect: '/admin/home' },
   { path: "/about", component: About, meta: { requiresAuth: true }},
   {
     path: "/account", 
@@ -17,6 +16,16 @@ const routes: Array<RouteRecordRaw> = [
       // { path: 'forgot-password', component: ForgotPassword },
       // { path: 'reset-password', component: ResetPassword }
     ]
+  },
+  {
+      path: '/admin',
+      component: AdminLayout,
+      meta: { requiresAuth: true },
+      children: [
+          { path: 'home', component: require('@/admin/views/home/home.vue').default },
+          // { path: 'user-list', component: require('@/admin/views/users/user-list.vue').default },
+          // { path: 'role-list', component: require('@/admin/views/roles/role-list.vue').default }
+      ]
   }
 ];
 
