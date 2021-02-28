@@ -4,4 +4,4 @@
     </div>
 </template>
 
-<script src="./home.ts"></script>
+<script src="./home-page.ts"></script>
