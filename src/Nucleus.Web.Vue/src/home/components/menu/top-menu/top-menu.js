@@ -34,7 +34,7 @@ let TopMenuComponent = class TopMenuComponent extends NucleusComponentBase {
 TopMenuComponent = __decorate([
     Component({
         components: {
-            ChangePassword: require('@/admin/components/profile/change-password/change-password.vue').default
+            ChangePassword: require('@/home/components/profile/change-password/change-password.vue').default
         }
     })
 ], TopMenuComponent);

@@ -1,4 +1,4 @@
-﻿interface INewsListOutput  {
+﻿interface INewsListOutput {
     title: string;
     description: string;
 }

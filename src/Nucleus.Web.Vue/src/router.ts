@@ -29,7 +29,8 @@ const router = new VueRouter({
             children: [
                 { path: 'user-list', component: require('@/admin/views/users/user-list.vue').default },
                 { path: 'role-list', component: require('@/admin/views/roles/role-list.vue').default },
-                { path: 'create-news', component: require('@/admin/views/news/create/create-news.vue').default }
+                { path: 'create-news', component: require('@/admin/views/news/create/create-news.vue').default },
+                { path: 'exceptions', component: require('@/admin/views/exceptions/list/exceptions-list.vue').default }
             ]
         },
         {

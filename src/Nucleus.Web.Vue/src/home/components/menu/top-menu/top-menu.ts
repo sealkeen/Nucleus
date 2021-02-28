@@ -4,7 +4,7 @@ import LanguageStore from '@/stores/language-store';
 
 @Component({
     components: {
-        ChangePassword: require('@/admin/components/profile/change-password/change-password.vue').default
+        ChangePassword: require('@/home/components/profile/change-password/change-password.vue').default
     }
 })
 export default class TopMenuComponent extends NucleusComponentBase {
