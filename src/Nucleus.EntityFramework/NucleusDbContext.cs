@@ -19,7 +19,7 @@ namespace Nucleus.EntityFramework
 
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<News> News { get; set; }
-        public DbSet<Nucleus.Core.Exceptions.Exception> Exceptions { get; set; }
+        public DbSet<Nucleus.Core.Exceptions.NucleusCoreException> Exceptions { get; set; }
         public DbSet<RolePermission> RolePermissions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -67,7 +67,7 @@ namespace Nucleus.EntityFramework
                 b.HasData(SeedData.BuildApplicationUserRoles());
             }));
 
-            modelBuilder.Entity<Nucleus.Core.Exceptions.Exception>().ToTable("Exceptions");
+            modelBuilder.Entity<Nucleus.Core.Exceptions.NucleusCoreException>().ToTable("Exceptions");
             modelBuilder.Entity<News>().ToTable("News");
             modelBuilder.Entity<UserClaim>().ToTable("UserClaim");
             modelBuilder.Entity<UserLogin>().ToTable("UserLogin");

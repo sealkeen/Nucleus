@@ -26,7 +26,7 @@ namespace Nucleus.Application.Exceptions
 
         public async Task AddExceptionAsync(string text)
         {
-            await _dbContext.Exceptions.AddAsync(new Exception()
+            await _dbContext.Exceptions.AddAsync(new NucleusCoreException()
             {
                 Text = text
             });

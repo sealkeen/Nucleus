@@ -5,10 +5,10 @@ using System.Text;
 
 namespace Nucleus.Core
 {
-    public abstract class SimpleEntity
+    public interface ISimpleEntity
     {
         [Key]
         public long Id { get; set; }
-        public DateTime CreationDate { get; set; } = DateTime.Now;
+        public DateTime CreationDate { get; set; }
     }
 }
