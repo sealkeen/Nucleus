@@ -2,7 +2,7 @@
 
 namespace Nucleus.Core
 {
-    public abstract class BaseEntity
+    public abstract class BaseEntity : ISimpleEntity
     {
         public Guid Id { get; set; }
 

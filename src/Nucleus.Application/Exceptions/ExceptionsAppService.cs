@@ -19,17 +19,14 @@ namespace Nucleus.Application.Exceptions
         {
             return _dbContext.Exceptions.Select(x => new ExceptionsListOutput()
             {
-                Text = x.Text,
+                Text = x.Message,
                 CreationDate = x.CreationDate
             }).ToList();
         }
 
         public async Task AddExceptionAsync(string text)
         {
-            await _dbContext.Exceptions.AddAsync(new NucleusCoreException()
-            {
-                Text = text
-            });
+            await _dbContext.Exceptions.AddAsync(new NucleusCoreException(text));
 
             await _dbContext.SaveChangesAsync();
         }

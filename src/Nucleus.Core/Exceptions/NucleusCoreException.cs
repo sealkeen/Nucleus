@@ -8,8 +8,12 @@ namespace Nucleus.Core.Exceptions
 {
     public class NucleusCoreException : Exception, ISimpleEntity
     {
-        public string Text { get; set; }
-        public long Id { get ; set ; }
+        public NucleusCoreException(string message) : base(message)
+        {
+
+        }
+        [Key]
+        public long Id { get; set; }
         public DateTime CreationDate { get; set; } = DateTime.Now;
     }
 }
