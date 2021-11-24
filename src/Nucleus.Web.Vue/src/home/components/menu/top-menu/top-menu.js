@@ -3,11 +3,8 @@ import NucleusComponentBase from '@/shared/application/nucleus-component-base';
 import { Component } from 'vue-property-decorator';
 import LanguageStore from '@/stores/language-store';
 let TopMenuComponent = class TopMenuComponent extends NucleusComponentBase {
-    constructor() {
-        super(...arguments);
-        this.drawer = true;
-        this.selectedLanguage = {};
-    }
+    drawer = true;
+    selectedLanguage = {};
     beforeMount() {
         this.selectedLanguage = LanguageStore.getLanguage();
     }

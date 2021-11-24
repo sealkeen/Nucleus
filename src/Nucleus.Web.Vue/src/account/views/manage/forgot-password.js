@@ -2,13 +2,11 @@ import { __decorate } from "tslib";
 import { Component } from 'vue-property-decorator';
 import NucleusComponentBase from '@/shared/application/nucleus-component-base';
 let ForgotPasswordComponent = class ForgotPasswordComponent extends NucleusComponentBase {
-    constructor() {
-        super(...arguments);
-        this.refs = this.$refs;
-        this.forgotPasswordInput = {};
-        this.errors = [];
-        this.isEmailSent = false;
-    }
+    refs = this.$refs;
+    forgotPasswordInput = {};
+    errors = [];
+    isEmailSent = false;
+    resultMessage;
     onSubmit() {
         if (this.refs.form.validate()) {
             this.nucleusService.post('/api/forgotPassword', this.forgotPasswordInput)

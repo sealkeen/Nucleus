@@ -1,20 +1,19 @@
 import { __decorate } from "tslib";
 import { Component } from 'vue-property-decorator';
 import NucleusComponentBase from '@/shared/application/nucleus-component-base';
-let LoginComponent = class LoginComponent extends NucleusComponentBase {
-    constructor() {
-        super(...arguments);
-        this.refs = this.$refs;
-        this.loginInput = {};
-        this.errors = [];
-    }
+let NewsCreateComponent = class NewsCreateComponent extends NucleusComponentBase {
+    refs = this.$refs;
+    createNewsInput = {};
+    errors = [];
+    resultMessage;
+    creationNewsIsComplete = false;
     onSubmit() {
         if (this.refs.form.validate()) {
-            this.nucleusService.post('/api/login', this.loginInput)
+            this.nucleusService.post('/api/news/PostNews', this.createNewsInput)
                 .then((response) => {
                 if (!response.isError) {
-                    this.authStore.setToken(response.content.token);
-                    this.$router.push({ path: '/admin/home' });
+                    this.resultMessage = this.$t('NewsCreationSuccessful').toString();
+                    this.creationNewsIsComplete = true;
                 }
                 else {
                     this.errors = response.errors;
@@ -23,8 +22,8 @@ let LoginComponent = class LoginComponent extends NucleusComponentBase {
         }
     }
 };
-LoginComponent = __decorate([
+NewsCreateComponent = __decorate([
     Component
-], LoginComponent);
-export default LoginComponent;
-//# sourceMappingURL=login.js.map
+], NewsCreateComponent);
+export default NewsCreateComponent;
+//# sourceMappingURL=create-news.js.map

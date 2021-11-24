@@ -15,4 +15,4 @@ AdminLayoutComponent = __decorate([
     })
 ], AdminLayoutComponent);
 export default AdminLayoutComponent;
-//# sourceMappingURL=admin-layout.js.map
+//# sourceMappingURL=layout.js.map

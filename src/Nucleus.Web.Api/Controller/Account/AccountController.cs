@@ -106,7 +106,7 @@ namespace Nucleus.Web.Api.Controller.Account
             {
                 return BadRequest(new List<NameValueDto>
                 {
-                    new NameValueDto("PasswordsDoesNotMatch", "Passwords doesn't match!")
+                    new NameValueDto("PasswordsDoesNotMatch", "Passwords don't match!")
                 });
             }
 

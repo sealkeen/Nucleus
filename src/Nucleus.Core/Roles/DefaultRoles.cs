@@ -19,7 +19,7 @@ namespace Nucleus.Core.Roles
         {
             Id = new Guid("F22BCE18-06EC-474A-B9AF-A9DE2A7B8263"),
             Name = RoleNameForAdmin,
-            NormalizedName = RoleNameForAdmin.ToUpper(CultureInfo.GetCultureInfo("en_US")),
+            NormalizedName = RoleNameForAdmin.ToUpper(CultureInfo.CurrentCulture),
             IsSystemDefault = true
         };
 
@@ -27,7 +27,7 @@ namespace Nucleus.Core.Roles
         {
             Id = new Guid("11D14A89-3A93-4D39-A94F-82B823F0D4CE"),
             Name = RoleNameForMember,
-            NormalizedName = RoleNameForMember.ToUpper(CultureInfo.GetCultureInfo("en_US")),
+            NormalizedName = RoleNameForMember.ToUpper(CultureInfo.CurrentCulture),
             IsSystemDefault = true
         };
 

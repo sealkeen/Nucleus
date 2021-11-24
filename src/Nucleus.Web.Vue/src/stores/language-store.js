@@ -1,4 +1,5 @@
 export default class LanguageStore {
+    static storageKey = 'language';
     static getLanguage() {
         return JSON.parse(localStorage.getItem(LanguageStore.storageKey)) ||
             { languageCode: 'en', languageName: 'English' };
@@ -10,5 +11,4 @@ export default class LanguageStore {
         localStorage.removeItem(LanguageStore.storageKey);
     }
 }
-LanguageStore.storageKey = 'language';
 //# sourceMappingURL=language-store.js.map

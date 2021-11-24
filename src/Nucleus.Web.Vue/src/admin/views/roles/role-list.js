@@ -3,32 +3,29 @@ import NucleusComponentBase from '@/shared/application/nucleus-component-base';
 import { Component, Watch } from 'vue-property-decorator';
 import Guid from '@/shared/helpers/guid-helper';
 let RoleListComponent = class RoleListComponent extends NucleusComponentBase {
-    constructor() {
-        super(...arguments);
-        this.refs = this.$refs;
-        this.allPermissions = [];
-        this.errors = [];
-        this.loading = true;
-        this.dialog = false;
-        this.formTitle = '';
-        this.options = {};
-        this.search = '';
-        this.selectAll = false;
-        this.createOrUpdateRoleInput = {
-            grantedPermissionIds: [],
-            role: {}
-        };
-        this.pagedListOfRoleListDto = {
-            totalCount: 0,
-            items: []
-        };
-    }
+    refs = this.$refs;
+    allPermissions = [];
+    errors = [];
+    loading = true;
+    dialog = false;
+    formTitle = '';
+    options = {};
+    search = '';
+    selectAll = false;
     get headers() {
         return [
             { text: this.$t('RoleName'), value: 'name' },
             { text: this.$t('Actions'), value: 'action', sortable: false }
         ];
     }
+    createOrUpdateRoleInput = {
+        grantedPermissionIds: [],
+        role: {}
+    };
+    pagedListOfRoleListDto = {
+        totalCount: 0,
+        items: []
+    };
     onPaginationChanged() {
         this.getRoles();
     }

@@ -1,4 +1,5 @@
 export default class AuthStore {
+    static storageKey = 'token';
     static getToken() {
         return localStorage.getItem(AuthStore.storageKey);
     }
@@ -19,5 +20,4 @@ export default class AuthStore {
         return {};
     }
 }
-AuthStore.storageKey = 'token';
 //# sourceMappingURL=auth-store.js.map

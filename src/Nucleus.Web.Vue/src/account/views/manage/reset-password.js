@@ -2,13 +2,11 @@ import { __decorate } from "tslib";
 import { Component } from 'vue-property-decorator';
 import NucleusComponentBase from '@/shared/application/nucleus-component-base';
 let ResetPasswordComponent = class ResetPasswordComponent extends NucleusComponentBase {
-    constructor() {
-        super(...arguments);
-        this.refs = this.$refs;
-        this.resetPasswordInput = {};
-        this.errors = [];
-        this.isPasswordReset = false;
-    }
+    refs = this.$refs;
+    resetPasswordInput = {};
+    errors = [];
+    isPasswordReset = false;
+    resultMessage;
     onSubmit() {
         if (this.refs.form.validate()) {
             this.resetPasswordInput.token = this.$route.query.token.toString();

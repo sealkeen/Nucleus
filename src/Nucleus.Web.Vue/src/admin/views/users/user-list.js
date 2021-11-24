@@ -3,27 +3,16 @@ import NucleusComponentBase from '@/shared/application/nucleus-component-base';
 import { Component, Watch } from 'vue-property-decorator';
 import Guid from '@/shared/helpers/guid-helper';
 let UserListComponent = class UserListComponent extends NucleusComponentBase {
-    constructor() {
-        super(...arguments);
-        this.refs = this.$refs;
-        this.loading = true;
-        this.options = {};
-        this.search = '';
-        this.dialog = false;
-        this.formTitle = '';
-        this.errors = [];
-        this.allRoles = [];
-        this.isEdit = false;
-        this.selectAll = false;
-        this.createOrUpdateUserInput = {
-            grantedRoleIds: [],
-            user: {}
-        };
-        this.pagedListOfUserListDto = {
-            totalCount: 0,
-            items: []
-        };
-    }
+    refs = this.$refs;
+    loading = true;
+    options = {};
+    search = '';
+    dialog = false;
+    formTitle = '';
+    errors = [];
+    allRoles = [];
+    isEdit = false;
+    selectAll = false;
     get headers() {
         return [
             { text: this.$t('UserName'), value: 'userName' },
@@ -31,6 +20,14 @@ let UserListComponent = class UserListComponent extends NucleusComponentBase {
             { text: this.$t('Actions'), value: 'action', sortable: false }
         ];
     }
+    createOrUpdateUserInput = {
+        grantedRoleIds: [],
+        user: {}
+    };
+    pagedListOfUserListDto = {
+        totalCount: 0,
+        items: []
+    };
     onPaginationChanged() {
         this.getUsers();
     }

@@ -7,4 +7,4 @@ HomeComponent = __decorate([
     Component
 ], HomeComponent);
 export default HomeComponent;
-//# sourceMappingURL=home.js.map
+//# sourceMappingURL=home-page.js.map

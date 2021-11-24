@@ -2,13 +2,12 @@ import { __decorate } from "tslib";
 import NucleusComponentBase from '@/shared/application/nucleus-component-base';
 import { Component, Prop } from 'vue-property-decorator';
 let ChangePasswordComponent = class ChangePasswordComponent extends NucleusComponentBase {
-    constructor() {
-        super(...arguments);
-        this.refs = this.$refs;
-        this.errors = [];
-        this.changePasswordInput = {};
-        this.dialog = false;
-    }
+    changePasswordDialog;
+    logOut;
+    refs = this.$refs;
+    errors = [];
+    changePasswordInput = {};
+    dialog = false;
     mounted() {
         this.$root.$on('changePasswordDialogChanged', (dialog) => {
             this.dialog = dialog;

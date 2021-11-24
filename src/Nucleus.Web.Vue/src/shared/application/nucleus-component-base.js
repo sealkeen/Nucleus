@@ -7,15 +7,12 @@ import Swal from 'sweetalert2';
 import AuthStore from '@/stores/auth-store';
 import { Component } from 'vue-property-decorator';
 let NucleusComponentBase = class NucleusComponentBase extends Vue {
-    constructor() {
-        super(...arguments);
-        this.nucleusService = new NucleusService();
-        this.queryString = QueryString;
-        this.nucleus = Nucleus;
-        this.authStore = AuthStore;
-        this.requiredError = (v) => !!v || this.t('RequiredField');
-        this.emailError = (v) => /.+@.+/.test(v) || this.t('EmailValidationError');
-    }
+    nucleusService = new NucleusService();
+    queryString = QueryString;
+    nucleus = Nucleus;
+    authStore = AuthStore;
+    requiredError = (v) => !!v || this.t('RequiredField');
+    emailError = (v) => /.+@.+/.test(v) || this.t('EmailValidationError');
     swalToast(duration, type, title) {
         Swal.fire({
             toast: true,

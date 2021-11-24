@@ -3,10 +3,7 @@ import { Component } from 'vue-property-decorator';
 import NucleusComponentBase from '@/shared/application/nucleus-component-base';
 import LanguageStore from '@/stores/language-store';
 let AccountLayoutComponent = class AccountLayoutComponent extends NucleusComponentBase {
-    constructor() {
-        super(...arguments);
-        this.selectedLanguage = {};
-    }
+    selectedLanguage = {};
     created() {
         this.nucleus.auth.removeProps();
     }

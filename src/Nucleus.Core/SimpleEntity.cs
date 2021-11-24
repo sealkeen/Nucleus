@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Nucleus.Core
 {
-    public class SimpleEntity
+    public abstract class SimpleEntity
     {
         [Key]
         public long Id { get; set; }

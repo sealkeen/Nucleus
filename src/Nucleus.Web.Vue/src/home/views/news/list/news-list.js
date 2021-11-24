@@ -1,30 +1,27 @@
 import { __decorate } from "tslib";
 import { Component } from 'vue-property-decorator';
 import NucleusComponentBase from '@/shared/application/nucleus-component-base';
-let LoginComponent = class LoginComponent extends NucleusComponentBase {
-    constructor() {
-        super(...arguments);
-        this.refs = this.$refs;
-        this.loginInput = {};
-        this.errors = [];
+let ListComponent = class ListComponent extends NucleusComponentBase {
+    loading = true;
+    search = '';
+    options = {};
+    pagedListOfNewsListDto = {
+        totalCount: 0,
+        items: []
+    };
+    mounted() {
+        this.getNews();
     }
-    onSubmit() {
-        if (this.refs.form.validate()) {
-            this.nucleusService.post('/api/login', this.loginInput)
-                .then((response) => {
-                if (!response.isError) {
-                    this.authStore.setToken(response.content.token);
-                    this.$router.push({ path: '/admin/home' });
-                }
-                else {
-                    this.errors = response.errors;
-                }
-            });
-        }
+    getNews() {
+        this.loading = true;
+        this.nucleusService.get('/api/News/GetNews', false).then((response) => {
+            this.pagedListOfNewsListDto = response.content;
+            this.loading = false;
+        });
     }
 };
-LoginComponent = __decorate([
+ListComponent = __decorate([
     Component
-], LoginComponent);
-export default LoginComponent;
-//# sourceMappingURL=login.js.map
+], ListComponent);
+export default ListComponent;
+//# sourceMappingURL=news-list.js.map
