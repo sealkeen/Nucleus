@@ -6,11 +6,15 @@ using System.Text;
 
 namespace Nucleus.Core.Exceptions
 {
-    public class NucleusCoreException : Exception, ISimpleEntity
+    public class NucleusCoreException : ISimpleEntity
     {
-        public NucleusCoreException(string message) : base(message) { }
         [Key]
         public long Id { get; set; }
+        public string Message { get; set; }
         public DateTime CreationDate { get; set; } = DateTime.Now;
+        public NucleusCoreException(string message)
+        {
+            Message = message;
+        }
     }
 }

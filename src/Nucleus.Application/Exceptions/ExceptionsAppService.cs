@@ -30,6 +30,5 @@ namespace Nucleus.Application.Exceptions
 
             await _dbContext.SaveChangesAsync();
         }
-
     }
 }
